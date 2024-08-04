@@ -43,10 +43,17 @@ const chatSlice = createSlice({
     },
     removeChat: (state, action) => {
       state.data = state.data.filter(chat => chat.id !== action.payload)
+    },
+    setNameChat: (state, action) => {
+      const { newTitle, chatId } = action.payload
+      const chat = state.data.find(chat => chat.id === chatId)
+      if (chat) {
+        chat.title = newTitle
+      }
     }
   }
 })
 
-export const { addChat, removeChat, addMessage } = chatSlice.actions
+export const { addChat, removeChat, addMessage, setNameChat } = chatSlice.actions
 
 export default chatSlice.reducer
